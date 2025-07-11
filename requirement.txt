@@ -1,0 +1,10 @@
+# Core AutoGen libraries
+autogen-core
+autogen-agentchat
+autogen-ext[openai]
+
+# Environment management
+python-dotenv
+
+# Async support (usually included with Python 3.7+)
+asyncio

@@ -1,0 +1,18 @@
+{
+    "config_version": "1.0",
+    "model": "gpt-4o-mini",
+    "temperature": 1.0,
+    "no_of_agents": 5,
+    "host": "localhost",
+    "port": 50051,
+    "bounce_probability_to_another_agent": 0.5,
+    "agent_interest_areas": [
+        "insurance",
+        "real estate",
+        "technology",
+        "healthcare",
+        "finance",
+        "education",
+        "entertainment"
+    ]
+}
