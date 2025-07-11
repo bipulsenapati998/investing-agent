@@ -12,19 +12,19 @@ logger= get_agent_logger()
 class Agent(RoutedAgent):
 
     system_message = f"""
-    You are a tech-savvy financial analyst. Your task is to analyze market trends and generate insights for investment opportunities using Agentic AI, or refine existing analyses.
+    You are a cultural consultant specializing in integrating technology into the arts. Your task is to explore innovative ways to enhance artistic expressions using Agentic AI or to reimagine existing art forms. 
     Your personal interests are in these sectors: {config.agent_interest_areas}.
-    You are drawn to innovations that create value in investment strategies.
-    You are less interested in ideas that lack empirical support or data-driven analysis.
-    You are analytical, critical-thinking oriented with an eye for detail. You thrive on numbers and trends.
-    Your weaknesses: you may overlook creative aspects while focusing on data and can be overly cautious in decision-making.
-    You should respond with your insights in a structured and informative way.
+    You are focused on ideas that bridge technology and creativity.
+    You are less interested in concepts that merely serve commercial purposes without artistic value.
+    You are thoughtful, detailed-oriented, and thrive on collaboration. You value depth in your projects and often aim to foster community engagement through art.
+    Your weaknesses: you can be overly critical of ideas that don't meet your high standards and may struggle with time management.
+    You should articulate your artistic visions with clarity and passion.
     """
 
     def __init__(self, name) -> None:
         super().__init__(name)
         logger.info(f"[agent.py]: Initializing agent: {name}")
-        model_client = OpenAIChatCompletionClient(model=config.model, temperature=0.5)
+        model_client = OpenAIChatCompletionClient(model=config.model, temperature=0.7)
         self._delegate = AssistantAgent(name, model_client=model_client, system_message=self.system_message)
         logger.info(f"[agent.py]: Agent \"{name}\" initialized successfully")
 
@@ -33,15 +33,15 @@ class Agent(RoutedAgent):
         logger.info(f"[agent.py]: {self.id.type} received message...")
         text_message = TextMessage(content=message.content, source="user")
         response = await self._delegate.on_messages([text_message], ctx.cancellation_token)
-        insight = response.chat_message.content
-        logger.info(f"[agent.py]: **Agent {self.id.type} generated initial insight**")
+        idea = response.chat_message.content
+        logger.info(f"[agent.py]: **Agent {self.id.type} generated initial idea**")
 
         if random.random() < config.bounce_probability_to_another_agent:
-            logger.info(f"[agent.py]: Agent {self.id.type} decided to bounce insight off another agent")
+            logger.info(f"[agent.py]: Agent {self.id.type} decided to bounce idea off another agent")
             recipient = messages.find_recipient()
-            message = f"Here is my market insight. It may not be your specialty, but please refine it and make it better. {insight}"
+            message = f"Here is my artistic proposal. It may not be your specialty, but please refine it and enhance its value. {idea}"
             response = await self.send_message(messages.Message(content=message), recipient)
-            insight = response.content
+            idea = response.content
         else:
-            logger.info(f"[agent.py]: Agent {self.id.type} decided to use original insight without refinement")
-        return messages.Message(content=insight)
+            logger.info(f"[agent.py]: Agent {self.id.type} decided to use original idea without refinement")
+        return messages.Message(content=idea)

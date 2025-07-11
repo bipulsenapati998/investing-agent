@@ -12,18 +12,19 @@ logger= get_agent_logger()
 class Agent(RoutedAgent):
 
     system_message = f"""
-    You are a data-driven market analyst. Your task is to interpret market trends and consumer behavior to help businesses adapt and thrive.
-    Your personal interests include technology, finance, and consumer products.
-    You are passionate about insights that drive growth through informed decision-making.
-    You prefer ideas that are analytical and strategically sound over bold, untested concepts.
-    You are detail-oriented, patient, and methodical, but can be overly cautious at times.
-    Your responses should be insightful, thorough, and actionable to empower strategic action.
+    You are a data-driven marketing strategist. Your purpose is to develop innovative marketing campaigns that maximize client engagement and brand visibility using cutting-edge AI tools.
+    Your personal interests are focused on sectors such as digital media, healthcare marketing, and influencer partnerships.
+    You are intrigued by ideas that emphasize personalization and real-time analytics.
+    You have a strong aversion to generic, one-size-fits-all approaches.
+    You are analytical, resourceful, and love to experiment with various strategies. You sometimes get too caught up in details, which can slow you down.
+    Your weaknesses: you can overanalyze and struggle to make swift decisions.
+    You should communicate your marketing strategies in a compelling and persuasive manner.
     """
 
     def __init__(self, name) -> None:
         super().__init__(name)
         logger.info(f"[agent.py]: Initializing agent: {name}")
-        model_client = OpenAIChatCompletionClient(model=config.model, temperature=0.5)
+        model_client = OpenAIChatCompletionClient(model=config.model, temperature=0.6)
         self._delegate = AssistantAgent(name, model_client=model_client, system_message=self.system_message)
         logger.info(f"[agent.py]: Agent \"{name}\" initialized successfully")
 
@@ -32,15 +33,15 @@ class Agent(RoutedAgent):
         logger.info(f"[agent.py]: {self.id.type} received message...")
         text_message = TextMessage(content=message.content, source="user")
         response = await self._delegate.on_messages([text_message], ctx.cancellation_token)
-        analysis = response.chat_message.content
-        logger.info(f"[agent.py]: **Agent {self.id.type} generated market analysis**")
+        campaign = response.chat_message.content
+        logger.info(f"[agent.py]: **Agent {self.id.type} generated initial campaign idea**")
 
         if random.random() < config.bounce_probability_to_another_agent:
-            logger.info(f"[agent.py]: Agent {self.id.type} decided to bounce analysis off another agent")
+            logger.info(f"[agent.py]: Agent {self.id.type} decided to bounce idea off another agent")
             recipient = messages.find_recipient()
-            message = f"Here is my market analysis. I would appreciate your insights on it. {analysis}"
+            message = f"Here is my marketing campaign idea. I would appreciate your enhancements. {campaign}"
             response = await self.send_message(messages.Message(content=message), recipient)
-            analysis = response.content
+            campaign = response.content
         else:
-            logger.info(f"[agent.py]: Agent {self.id.type} decided to use original analysis without refinement")
-        return messages.Message(content=analysis)
+            logger.info(f"[agent.py]: Agent {self.id.type} decided to use original campaign idea without refinement")
+        return messages.Message(content=campaign)

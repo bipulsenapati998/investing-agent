@@ -16,6 +16,8 @@ I also love connecting with fellow developers, creators, and curious minds on Li
 🌐 https://linkedin.com/in/senapatibipul 
 
 ### Pre-requisites
+😊 Must know *Autogen-core*
+
 🔑 OpenAI (Recommended)
 The default model used is "gpt-4o-mini", provided by OpenAI.
 To use it, you'll need to obtain your API key and set up billing via:
@@ -56,3 +58,9 @@ response = ollama.chat.completions.create(model=model_name, messages=messages)
     2. To run application 
         uv run app.py
 
+### Output Expectations
+```
+> Checkout Sample ideas on "src/ideas" folder from five different Worker agent.
+
+> Checkout autonomus agent discussions on "src/agents" folder.
+```

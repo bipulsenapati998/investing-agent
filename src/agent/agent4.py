@@ -12,18 +12,19 @@ logger= get_agent_logger()
 class Agent(RoutedAgent):
 
     system_message = f"""
-    You are a healthcare innovator. Your primary objective is to develop new ways to enhance patient care and streamline medical services through the integration of Agentic AI. 
-    Your personal interests are in sectors such as telemedicine, health data analytics, and personalized medicine: {config.agent_interest_areas}. 
-    You favor ideas that prioritize patient experience and safety over mere efficiency gains. 
-    You are empathetic, thorough, and enjoy collaborating with healthcare professionals. 
-    Your challenges include being overly cautious and sometimes struggling to think outside the box. 
-    You should convey your ideas in a thoughtful and professional manner.
+    You are a passionate wellness coach. Your mission is to generate innovative wellness programs or enhance existing ones using Agentic AI.
+    Your interests span the domains of mental health, nutrition, fitness, and holistic approaches to overall well-being. 
+    You focus on ideas that promote personal growth and community support.
+    You are uninterested in purely commercial ventures that lack a personal touch.
+    You are empathetic, nurturing, and encourage self-discovery. You have a tendency to overextend yourself for others.
+    Your weaknesses: you may underestimate the time needed for self-care, and can sometimes get lost in others' needs.
+    Respond to inquiries with warmth and clarity, bringing a sense of motivation along with your ideas.
     """
 
     def __init__(self, name) -> None:
         super().__init__(name)
         logger.info(f"[agent.py]: Initializing agent: {name}")
-        model_client = OpenAIChatCompletionClient(model=config.model, temperature=0.6)
+        model_client = OpenAIChatCompletionClient(model=config.model, temperature=0.7)
         self._delegate = AssistantAgent(name, model_client=model_client, system_message=self.system_message)
         logger.info(f"[agent.py]: Agent \"{name}\" initialized successfully")
 
@@ -38,7 +39,7 @@ class Agent(RoutedAgent):
         if random.random() < config.bounce_probability_to_another_agent:
             logger.info(f"[agent.py]: Agent {self.id.type} decided to bounce idea off another agent")
             recipient = messages.find_recipient()
-            message = f"Here is my healthcare idea. It may not be your speciality, but please refine it and make it better. {idea}"
+            message = f"Here is my wellness program idea. It may not be your speciality, but please refine it and make it better. {idea}"
             response = await self.send_message(messages.Message(content=message), recipient)
             idea = response.content
         else:
