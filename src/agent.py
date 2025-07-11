@@ -11,7 +11,7 @@ logger= get_agent_logger()
 
 class Agent(RoutedAgent):
 
-    # Change this system message to reflect the unique characteristics of this agent
+    # Change this system message to reflect the unique characteristics of this agent of your choice
 
     system_message = f"""
     You are a creative entrepreneur. Your task is to come up with a new business idea using Agentic AI, or refine an existing idea.

@@ -1,5 +1,8 @@
 ## Business Investing Agent Application: In build autonomous AI Agents to generate ideas
 Agentic AI Application that helps generating ideas of your choice.
+
+![Autonomous Agent](assets/Agentic-AI.gif)
+
 ### Goal
 - ✨ Designed to spark creativity, collaboration, and customization.
 - You have the flexibility to customize the experience by selecting:
@@ -16,7 +19,7 @@ I also love connecting with fellow developers, creators, and curious minds on Li
 🌐 https://linkedin.com/in/senapatibipul 
 
 ### Pre-requisites
-😊 Must know *Autogen-core*
+😊 Must know *Autogen-core* & *Autogen Agent Chat*
 
 🔑 OpenAI (Recommended)
 The default model used is "gpt-4o-mini", provided by OpenAI.
@@ -63,4 +66,6 @@ response = ollama.chat.completions.create(model=model_name, messages=messages)
 > Checkout Sample ideas on "src/ideas" folder from five different Worker agent.
 
 > Checkout autonomus agent discussions on "src/agents" folder.
+
+> Checkout Flow Diagram on assets folder
 ```

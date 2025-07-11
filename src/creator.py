@@ -67,7 +67,8 @@ class Creator(RoutedAgent):
         logger.info(f"About to register agent {agent_name} with Runtime")
         if agent_folder not in sys.path:
             sys.path.insert(0, agent_folder)
-
+        
+        # Call the importlib to dynamically import the agent module 
         module = importlib.import_module(agent_name)
         await module.Agent.register(self.runtime, agent_name, lambda: module.Agent(agent_name))
         logger.info(f"[creator.py]: Agent {agent_name} registered successfully and is now live")
