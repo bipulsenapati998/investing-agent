@@ -1,7 +1,7 @@
 ## Business Investing Agent Application: In build autonomous AI Agents to generate ideas
 Agentic AI Application that helps generating ideas of your choice.
 
-![Autonomous Agent](assets/Agentic-AI.gif)
+![Autonomous Agent](assests/Agentic-AI.gif)
 
 ### Goal
 - ✨ Designed to spark creativity, collaboration, and customization.
