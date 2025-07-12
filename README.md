@@ -4,13 +4,12 @@ Agentic AI Application that helps generating ideas of your choice.
 ![Autonomous Agent](assets/Agentic-AI.gif)
 
 ## Overview
-- Designed to spark creativity, collaboration, and customization.
-- You have the flexibility to customize the experience by selecting:
-    > Multi-agent architecture – Choose from different intelligent agents to collaborate on idea generation.
-
-    > Areas of interest – Focus on domains you're passionate about or exploring.
-    
-    > LLM of your choice
+A Flask-based REST API that generates creative business ideas using AutoGen AI agents. The API leverages multiple AI agents with different specialties to create, refine, and iterate on business concepts.
+### Features
+- **Multi-Agent AI System:**  Uses AutoGen framework with specialized agents
+- **RESTful API:** Clean, well-documented API endpoints
+- **Areas of interest:** Focus on business domains you're passionate about or exploring.
+- Designed to spark **creativity, collaboration, and customization**.
 
 <!-- ## Before you begin
 
@@ -38,13 +37,55 @@ I also love connecting with fellow developers, creators, and curious minds on Li
 ```
 3. Update the .env file with your OpenAI API key:
 ```
-    OPENAI_API_KEY=your_actual_api_key_here
-```
-4. Run the application 
-```
-    uv run app.py
+    OPENAI_API_KEY=<your_actual_api_key_here>
 ```
 
+4. Run the application 
+
+ > uv run app.py // Direct Approach
+
+ > uv run flask_api.py // Consumable endpoint
+
+## API Documentation
+### Base URL
+```
+http://localhost:50051
+```
+
+### Endpoints
+#### Health Check:
+```
+GET /health
+```
+#### Response:
+```
+{
+    "host": "localhost",
+    "model": "gpt-4o-mini",
+    "no_of_agents": 5,
+    "port": 50051,
+    "status": "healthy",
+    "temperature": 1.0,
+    "timestamp": "2025-07-11T05:06:03.011439",
+    "version": "1.0",
+    "expcted_no_of_ideas": 5
+}
+```
+#### Generate Business Ideas
+```
+POST /api/v1/ideas
+Content-Type: application/json
+
+{
+    "num_ideas": 3
+}
+```
+#### Response:
+```
+{
+    "message": "Ideas generated successfully on path:src/idea"
+}
+```
 ## Output Expectations
 ```
 > Checkout Sample ideas on "src/ideas" folder from five different Worker agent.
@@ -57,6 +98,7 @@ I also love connecting with fellow developers, creators, and curious minds on Li
 ```
 assets
 |    |── Agentic-AI.gif         # Design Diagram
+|    |── output Image.png       # Sample output
 src
 |    ├── config/                # Configuration files
 |    │   ├── load_config.py     # Configuration loader
@@ -71,8 +113,9 @@ src
 |    ├── agent.py               # Agent implementation
 |    ├── creator.py             # Creator agent
 |    ├── messages.py            # Message utilities
-|    ├── requirements.txt       # Python dependencies
-|    └── README.md              # This file
+|    ├── flask_api.py           # Endpoints
+requirements.txt                # Python dependencies
+README.md                       # This file
 config.json                     # Global Config
 .env                            # Secrets
 
