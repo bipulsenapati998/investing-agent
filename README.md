@@ -17,35 +17,47 @@ I'm here to support your success in any way I can! If you ever have questions, n
 I also love connecting with fellow developers, creators, and curious minds on LinkedIn.
 🌐 https://linkedin.com/in/senapatibipul  -->
 
+## Table of Contents
+
+- [Installation](#Installation)
+  - [Clone the Repository](#Clone-the-repository)
+  - [Create & Activate Virtual Environment](#Create-&-Activate-the-virtual-environment)
+  - [Environment Variables](#environment-variables)
+  - [Install Dependencies](#install-dependencies)
+  - [Run the Application](#Run-the-Application)
+- [API Documentation](#API-Documentation)
+    - [Endpoints](#Endpoints)
+- [Output Expectations](#Output-Expectations)
+    - [Steps & Sample video execution](#Output-Expectations)
+- [Project Structure](#project-structure)
+- [Pre-requisites on LLM](#Pre-requisites-on-LLM)
 
 ## Installation
 
-1. Clone the repository:
+1. Clone the Repository:
 ```
     git clone https://github.com/bipulsenapati998/investing-agent.git
     cd src
 ```
-2. Activate the virtual environment:
- 
-     Create a virtual env of your choice and install dependencies:
+2. Create & Activate the virtual environment:
 ```
-   
     Use venv	python -m venv llms && source llms/bin/activate
-    Use conda	conda create -n llms python=3.10 && conda activate llms
-
-    pip install -r requirement.txt
+    Use conda	conda create -n llms python=3.10 && conda activate llms  
 ```
 3. Update the .env file with your OpenAI API key:
 ```
     OPENAI_API_KEY=<your_actual_api_key_here>
 ```
+4. Install Dependencies:
+```
+    pip install -r requirement.txt
+```
+5. Run the Application:
+```
+   uv run app.py // Direct Approach
 
-4. Run the application 
-
- > uv run app.py // Direct Approach
-
- > uv run flask_api.py // Consumable endpoint
-
+   uv run flask_api.py // Consumable endpoint
+```
 ## API Documentation
 ### Base URL
 ```
@@ -88,12 +100,13 @@ Content-Type: application/json
 ```
 ## Output Expectations
 ```
-> Checkout Sample ideas on "src/ideas" folder from five different Worker agent.
+> Checkout Sample ideas on "src/ideas" folder from five distinct Worker agent.
 
 > Checkout autonomus agent discussions on "src/agents" folder.
 
-> Checkout Flow Diagram on assets folder
+> Consult to flow diagram in the assets folder for comprehensive understanding on Agentic AI.
 ```
+![Output Execution flow](assets/business_idea_generator_agentic_ai.gif)
 ## Project Structure
 ```
 assets
