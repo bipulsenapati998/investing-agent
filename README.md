@@ -6,10 +6,12 @@ Agentic AI Application that helps generating ideas of your choice.
 ## Overview
 A Flask-based REST API that generates creative business ideas using AutoGen AI agents. The API leverages multiple AI agents with different specialties to create, refine, and iterate on business concepts.
 ### Features
-- **Multi-Agent AI System:**  Uses AutoGen framework with specialized agents
-- **RESTful API:** Clean, well-documented API endpoints
-- **Areas of interest:** Focus on business domains you're passionate about or exploring.
 - Designed to spark **creativity, collaboration, and customization**.
+- **Multi-Agent AI System:**  Uses AutoGen framework with specialized agents
+* **Dynamic Agent Creation:** Automatically watches creator, agent superviser & generates **n** distinct agents.
+- **Flask RESTful API:** Clean, well-documented API endpoints
+- **Areas of interest:** Focus on business domains you're passionate about or exploring.
+- **Logging & Exception handling:** Comprehensive logging to monitor agent activity and troubleshoot issues.
 
 <!-- ## Before you begin
 
@@ -112,6 +114,7 @@ Content-Type: application/json
 assets
 |    |── Agentic-AI.gif         # Design Diagram
 |    |── output Image.png       # Sample output
+|    |__business_idea_generator_agentic_ai.gif
 src
 |    ├── config/                # Configuration files
 |    │   ├── load_config.py     # Configuration loader
